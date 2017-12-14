@@ -126,10 +126,12 @@ var wordList = ['grenadine',
 			gameText.innerHTML = gameText.innerHTML ="Tries left: "+tries+
 			"<br> Puzzle: "+puzzle+
 			"<br> Letters Used: "+used;
+			userInput=userInput.toLowerCase();
 			inGame=true;
 	    }
 	    else if(inGame){    		
-
+           
+          if ('abcdefghijklmnopqrstuvwxyz'.indexOf(userInput>=0) && userInput!='Enter' && userInput!='Escape'){
 			var index = word.indexOf(userInput);
 			if(index<0 && used.indexOf(userInput)<0){
 				tries--;
@@ -139,7 +141,8 @@ var wordList = ['grenadine',
 				"<br> Puzzle: "+puzzle+
 				"<br> Letters Used: "+used;  
 			}
-			else{
+			else {
+				//if they guessed right, split puzzle string to array, replace blanks, rejoin
 				temp = puzzle.split("");
 				for(let i=0 ; i<word.length ; i++){
 					if(userInput === word[i]){
@@ -152,6 +155,7 @@ var wordList = ['grenadine',
 				"<br> Letters Used: "+used;
 
 			}
+		  }	
 			if(puzzle.indexOf("_")<0){
 				alert("*!CONGRATULATIONS!*");
 				alert("*!YOU WIN!*");
@@ -176,7 +180,3 @@ var wordList = ['grenadine',
 	    }
     }
 }
-
-
-
-
